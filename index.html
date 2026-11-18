@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Maltese</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tipografía elegante de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden antialiased">
+
+    <!-- HEADER FIJO -->
+    <header class="fixed top-0 left-0 w-full z-40 p-6 flex justify-between items-center mix-blend-difference">
+        <!-- Logo (Reemplazamos el texto por la imagen) -->
+        <div class="cursor-pointer" onclick="window.location.reload()">
+            <img src="img/malteselogo.png" alt="Maltese Logo" class="h-10 md:h-12 w-auto object-contain">
+        </div>
+
+        <!-- Botón Menú Hambuguesa (Izquierda/Centro) -->
+        <button id="btn-menu" class="flex flex-col space-y-1.5 focus:outline-none group">
+            <span class="block w-8 h-[2px] bg-white transition-transform duration-300 group-hover:w-6"></span>
+            <span class="block w-8 h-[2px] bg-white transition-transform duration-300"></span>
+            <span class="block w-8 h-[2px] bg-white transition-transform duration-300 group-hover:w-6"></span>
+        </button>
+
+        <!-- Botón Contacto (Derecha) -->
+        <button id="btn-contacto" class="text-sm font-light tracking-widest uppercase hover:text-gray-400 transition-colors">
+            Contactanos
+        </button>
+    </header>
+
+    <!-- HERO / SLIDER -->
+    <section class="relative h-screen w-full overflow-hidden" id="hero-slider">
+        <!-- Slide 1 -->
+        <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100" style="background-image: url('https://images.unsplash.com/photo-1613214150384-c28f6f8b7d6c?q=80&w=2000&auto=format&fit=crop');"></div>
+        <!-- Slide 2 -->
+        <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=80&w=2000&auto=format&fit=crop');"></div>
+        <!-- Slide 3 -->
+        <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000&auto=format&fit=crop');"></div>
+
+        <!-- Overlay oscuro para que se lea el texto -->
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <!-- Texto Hero -->
+        <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-light tracking-wider mb-6 uppercase">Precisión en cada detalle</h1>
+            <p class="text-lg md:text-xl font-light text-gray-300 max-w-2xl">Mantenimiento y cuidado de tu vehículo con los más altos estándares.</p>
+        </div>
+    </section>
+
+    <!-- MENÚ LATERAL IZQUIERDO (Oculto por defecto) -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300">
+        <div class="h-full flex flex-col justify-center items-center">
+            <button id="btn-cerrar-menu" class="absolute top-6 right-8 text-4xl font-light text-white hover:text-gray-400">&times;</button>
+            <nav class="flex flex-col space-y-6 text-center">
+                <a href="#" class="text-3xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Home</a>
+                <a href="#" class="text-3xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Tus Servicios</a>
+                <a href="#" class="text-3xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Contacto</a>
+                <a href="#" class="text-3xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Nuestra Historia</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- MENÚ LATERAL DERECHO (Oculto por defecto) -->
+    <div id="contacto-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300">
+        <div class="h-full flex flex-col justify-center items-end pr-12 md:pr-24">
+            <button id="btn-cerrar-contacto" class="absolute top-6 right-8 text-4xl font-light text-white hover:text-gray-400">&times;</button>
+            <div class="flex flex-col space-y-6 text-right">
+                <p class="text-sm text-gray-400 tracking-widest uppercase mb-4">Ponete en contacto</p>
+                <a href="#" class="text-2xl font-light hover:text-gray-400 transition-colors">WhatsApp</a>
+                <a href="#" class="text-2xl font-light hover:text-gray-400 transition-colors">Mail</a>
+                <a href="#" class="text-2xl font-light hover:text-gray-400 transition-colors">Teléfono</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/index.js" type="module"></script>
+
+</body>
+</html>

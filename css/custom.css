@@ -1,0 +1,16 @@
+/* css/custom.css */
+
+/* Ocultar la barra de scroll en el modal pero permitir el scroll */
+#modal-servicio > div::-webkit-scrollbar {
+    width: 8px;
+}
+#modal-servicio > div::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+}
+
+/* Suavizar transiciones generales */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
