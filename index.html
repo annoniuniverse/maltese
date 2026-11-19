@@ -4,78 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller Maltese</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tipografía elegante de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/custom.css">
     <style>
         body { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Forzamos a que la primera imagen de fondo se vea al instante */
+        .slide:first-child {
+            opacity: 1 !important;
+        }
+
+        /* Animación fluida y lineal para el carrusel */
+        #carrusel-track {
+            transition: transform 1s linear; 
+        }
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden antialiased">
 
     <!-- HEADER FIJO -->
-    <header class="fixed top-0 left-0 w-full z-40 p-6 flex justify-between items-center mix-blend-difference">
-        <!-- Logo (Reemplazamos el texto por la imagen) -->
-        <div class="cursor-pointer" onclick="window.location.reload()">
+    <header class="fixed top-0 left-0 w-full z-40 p-6 flex justify-between items-center">
+        <div class="cursor-pointer" onclick="window.scrollTo(0,0)">
             <img src="img/malteselogo.png" alt="Maltese Logo" class="h-10 md:h-12 w-auto object-contain">
         </div>
 
-        <!-- Botón Menú Hambuguesa (Izquierda/Centro) -->
-        <button id="btn-menu" class="flex flex-col space-y-1.5 focus:outline-none group">
+        <button id="btn-menu" class="flex flex-col space-y-1.5 focus:outline-none group mix-blend-difference">
             <span class="block w-8 h-[2px] bg-white transition-transform duration-300 group-hover:w-6"></span>
             <span class="block w-8 h-[2px] bg-white transition-transform duration-300"></span>
             <span class="block w-8 h-[2px] bg-white transition-transform duration-300 group-hover:w-6"></span>
         </button>
 
-        <!-- Botón Contacto (Derecha) -->
-        <button id="btn-contacto" class="text-sm font-light tracking-widest uppercase hover:text-gray-400 transition-colors">
+        <button id="btn-contacto" class="text-sm font-light tracking-widest uppercase hover:text-gray-400 transition-colors mix-blend-difference text-white">
             Contactanos
         </button>
     </header>
 
-    <!-- HERO / SLIDER -->
-    <section class="relative h-screen w-full overflow-hidden" id="hero-slider">
-        <!-- Slide 1 -->
-        <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100" style="background-image: url('https://images.unsplash.com/photo-1613214150384-c28f6f8b7d6c?q=80&w=2000&auto=format&fit=crop');"></div>
-        <!-- Slide 2 -->
+    <!-- SECCIÓN 1: HERO / SLIDER (HOME) -->
+    <section id="home" class="relative h-screen w-full overflow-hidden">
+        <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000" style="background-image: url('img/headermaltese.png');"></div>
         <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=80&w=2000&auto=format&fit=crop');"></div>
-        <!-- Slide 3 -->
         <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000&auto=format&fit=crop');"></div>
 
-        <!-- Overlay oscuro para que se lea el texto -->
         <div class="absolute inset-0 bg-black/40"></div>
 
-        <!-- Texto Hero -->
         <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
             <h1 class="text-4xl md:text-6xl font-light tracking-wider mb-6 uppercase">Precisión en cada detalle</h1>
             <p class="text-lg md:text-xl font-light text-gray-300 max-w-2xl">Mantenimiento y cuidado de tu vehículo con los más altos estándares.</p>
         </div>
     </section>
 
-    <!-- MENÚ LATERAL IZQUIERDO (Oculto por defecto) -->
-    <div id="menu-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300">
+    <!-- SECCIÓN 2: TUS SERVICIOS -->
+    <section id="servicios" class="py-24 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center mb-16">
+            <h2 class="text-sm tracking-widest text-gray-400 uppercase mb-4">Tus Servicios</h2>
+            <h3 class="text-2xl md:text-4xl font-light mb-6 leading-tight">Todo lo que tu auto necesita, en un solo lugar.</h3>
+            <p class="text-gray-400 font-light text-base md:text-lg max-w-2xl mx-auto">
+                Desde el mantenimiento preventivo hasta las reparaciones más complejas. Trabajamos con repuestos de primera calidad y un equipo de mecánicos apasionados por lo que hacen.
+            </p>
+        </div>
+
+        <!-- Carrusel -->
+        <div class="relative w-full flex overflow-hidden no-scrollbar" id="carrusel-container">
+            <div class="flex gap-6 px-3" id="carrusel-track">
+                <img src="img/servicio1.jpg" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 1">
+                <img src="img/servicio2.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 2">
+                <img src="img/servicio3.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 3">
+                <img src="img/servicio4.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 4">
+                <img src="img/servicio5.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 5">
+                <!-- NUEVA FOTO ACÁ -->
+                <img src="img/servicio7.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 7">
+                <img src="img/servicio6.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 6">
+                
+                <!-- Duplicados para el efecto infinito -->
+                <img src="img/servicio1.jpg" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 1">
+                <img src="img/servicio2.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 2">
+                <img src="img/servicio3.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 3">
+                <img src="img/servicio4.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 4">
+                <img src="img/servicio5.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 5">
+                <!-- NUEVA FOTO ACÁ DUPLICADA -->
+                <img src="img/servicio7.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 7">
+                <img src="img/servicio6.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 6">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: NUESTRA HISTORIA -->
+    <section id="historia" class="relative py-32 bg-zinc-900">
+        <div class="absolute inset-0 opacity-20">
+            <img src="img/nuestrahistoria.png" alt="Fondo historia" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-sm tracking-widest text-gray-400 uppercase mb-6">Nuestra Historia</h2>
+            
+            <p class="text-2xl md:text-4xl font-light leading-snug mb-8">
+                "En este último tiempo estuve poco activo en las redes y es por un muy buen motivo."
+            </p>
+            
+            <div class="text-gray-400 font-light text-lg space-y-4">
+                <p>Hace 8 meses comencé un proyecto, y después de tanto esfuerzo logré culminarlo. A partir de hoy estoy en zona norte, Olivos!</p>
+                <p>Cada espacio y cada detalle de este garage tiene toda mi pasión, pero también el excelente trabajo de amigos que se involucraron en mi proyecto.</p>
+                <p>Gracias a mi familia por acompañarme y por el apoyo incondicional.</p>
+                <p class="text-white font-medium mt-8">Los espero.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: FOOTER / CONTACTO -->
+    <footer id="contacto-pie" class="py-20 border-t border-zinc-800 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-2xl font-light mb-8 uppercase tracking-widest">Visitanos</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-12 text-gray-400 font-light">
+                <div>
+                    <h4 class="text-white mb-2">Dirección</h4>
+                    <p>Ayacucho 3745</p>
+                    <p>Vte. López, Bs. As.</p>
+                </div>
+                <div>
+                    <h4 class="text-white mb-2">Horarios</h4>
+                    <p>Lunes a Viernes: 8:00 - 18:00</p>
+                    <p>Sábados: 8:00 - 13:00</p>
+                </div>
+                <div>
+                    <h4 class="text-white mb-2">Contacto</h4>
+                    <p>+54 11 5971-2158</p>
+                    <p>talleresmaltese@gmail.com</p>
+                </div>
+            </div>
+            <div class="mt-16 text-xs text-zinc-600 tracking-widest uppercase">
+                &copy; 2024 Taller Maltese. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- MENÚ LATERAL IZQUIERDO -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300">
         <div class="h-full flex flex-col justify-center items-center">
             <button id="btn-cerrar-menu" class="absolute top-6 right-8 text-4xl font-light text-white hover:text-gray-400">&times;</button>
-            <nav class="flex flex-col space-y-6 text-center">
-                <a href="#" class="text-3xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Home</a>
-                <a href="#" class="text-3xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Tus Servicios</a>
-                <a href="#" class="text-3xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Contacto</a>
-                <a href="#" class="text-3xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Nuestra Historia</a>
+            <nav class="flex flex-col space-y-8 text-center">
+                <a href="#home" class="nav-link text-3xl md:text-5xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Home</a>
+                <a href="#servicios" class="nav-link text-3xl md:text-5xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Tus Servicios</a>
+                <a href="#historia" class="nav-link text-3xl md:text-5xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Nuestra Historia</a>
+                <a href="#contacto-pie" class="nav-link text-3xl md:text-5xl font-light tracking-widest uppercase hover:text-gray-400 transition-colors">Contacto</a>
+                <a href="panel.html" class="text-xl font-light tracking-widest uppercase text-gray-500 hover:text-white transition-colors mt-8 border border-gray-700 px-6 py-3">Acceder a mi historial</a>
             </nav>
         </div>
     </div>
 
-    <!-- MENÚ LATERAL DERECHO (Oculto por defecto) -->
-    <div id="contacto-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300">
+    <!-- MENÚ LATERAL DERECHO (CONTACTO) -->
+    <div id="contacto-overlay" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300">
         <div class="h-full flex flex-col justify-center items-end pr-12 md:pr-24">
             <button id="btn-cerrar-contacto" class="absolute top-6 right-8 text-4xl font-light text-white hover:text-gray-400">&times;</button>
             <div class="flex flex-col space-y-6 text-right">
                 <p class="text-sm text-gray-400 tracking-widest uppercase mb-4">Ponete en contacto</p>
-                <a href="#" class="text-2xl font-light hover:text-gray-400 transition-colors">WhatsApp</a>
-                <a href="#" class="text-2xl font-light hover:text-gray-400 transition-colors">Mail</a>
-                <a href="#" class="text-2xl font-light hover:text-gray-400 transition-colors">Teléfono</a>
+                <a href="#" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">WhatsApp</a>
+                <a href="#" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">Mail</a>
+                <a href="#" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">Teléfono</a>
             </div>
         </div>
     </div>
