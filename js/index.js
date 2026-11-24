@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCerrarMenu = document.getElementById('btn-cerrar-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Función para cerrar el menú
     const cerrarMenu = () => {
         menuOverlay.classList.remove('opacity-100');
         menuOverlay.classList.add('opacity-0');
@@ -78,17 +77,30 @@ document.addEventListener('DOMContentLoaded', () => {
         btnCerrarMenu.addEventListener('click', cerrarMenu);
     }
 
-    // NUEVO: Cerrar el menú al hacer clic en cualquier opción
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             cerrarMenu();
         });
     });
 
-    // --- 4. MENÚ DERECHO (CONTACTO) ---
+    // --- 4. MENÚ DERECHO (CONTACTO Y DESPLEGABLES) ---
     const btnContacto = document.getElementById('btn-contacto');
     const contactoOverlay = document.getElementById('contacto-overlay');
     const btnCerrarContacto = document.getElementById('btn-cerrar-contacto');
+
+    const infoWsp = document.getElementById('info-wsp');
+    const infoMail = document.getElementById('info-mail');
+    const infoTel = document.getElementById('info-tel');
+
+    const btnToggleWsp = document.getElementById('btn-toggle-wsp');
+    const btnToggleMail = document.getElementById('btn-toggle-mail');
+    const btnToggleTel = document.getElementById('btn-toggle-tel');
+
+    const cerrarTodosLosDesplegables = () => {
+        if (infoWsp) infoWsp.classList.add('hidden');
+        if (infoMail) infoMail.classList.add('hidden');
+        if (infoTel) infoTel.classList.add('hidden');
+    };
 
     if (btnContacto) {
         btnContacto.addEventListener('click', () => {
@@ -106,7 +118,61 @@ document.addEventListener('DOMContentLoaded', () => {
             contactoOverlay.classList.add('opacity-0');
             setTimeout(() => {
                 contactoOverlay.classList.add('hidden');
+                cerrarTodosLosDesplegables();
             }, 300);
+        });
+    }
+
+    // Toggle desplegable WhatsApp
+    if (btnToggleWsp && infoWsp) {
+        btnToggleWsp.addEventListener('click', () => {
+            const estaOculto = infoWsp.classList.contains('hidden');
+            cerrarTodosLosDesplegables();
+            if (estaOculto) infoWsp.classList.remove('hidden');
+        });
+    }
+
+    // Toggle desplegable Mail
+    if (btnToggleMail && infoMail) {
+        btnToggleMail.addEventListener('click', () => {
+            const estaOculto = infoMail.classList.contains('hidden');
+            cerrarTodosLosDesplegables();
+            if (estaOculto) infoMail.classList.remove('hidden');
+        });
+    }
+
+    // Toggle desplegable Teléfono
+    if (btnToggleTel && infoTel) {
+        btnToggleTel.addEventListener('click', () => {
+            const estaOculto = infoTel.classList.contains('hidden');
+            cerrarTodosLosDesplegables();
+            if (estaOculto) infoTel.classList.remove('hidden');
+        });
+    }
+
+    // Copiar Mail
+    const btnCopiarMail = document.getElementById('btn-copiar-mail');
+    const textoMail = document.getElementById('texto-mail');
+    if (btnCopiarMail && textoMail) {
+        btnCopiarMail.addEventListener('click', () => {
+            navigator.clipboard.writeText(textoMail.textContent.trim());
+            btnCopiarMail.textContent = '¡Copiado!';
+            setTimeout(() => {
+                btnCopiarMail.textContent = 'Copiar Mail';
+            }, 2000);
+        });
+    }
+
+    // Copiar Teléfono
+    const btnCopiarTel = document.getElementById('btn-copiar-tel');
+    const textoTel = document.getElementById('texto-tel');
+    if (btnCopiarTel && textoTel) {
+        btnCopiarTel.addEventListener('click', () => {
+            navigator.clipboard.writeText(textoTel.textContent.trim());
+            btnCopiarTel.textContent = '¡Copiado!';
+            setTimeout(() => {
+                btnCopiarTel.textContent = 'Copiar Teléfono';
+            }, 2000);
         });
     }
 });

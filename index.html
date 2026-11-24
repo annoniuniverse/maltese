@@ -153,13 +153,41 @@
 
     <!-- MENÚ LATERAL DERECHO (CONTACTO) -->
     <div id="contacto-overlay" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300">
-        <div class="h-full flex flex-col justify-center items-end pr-12 md:pr-24">
+        <div class="h-full flex flex-col justify-center items-end pr-12 md:pr-24 overflow-y-auto py-10">
             <button id="btn-cerrar-contacto" class="absolute top-6 right-8 text-4xl font-light text-white hover:text-gray-400">&times;</button>
-            <div class="flex flex-col space-y-6 text-right">
-                <p class="text-sm text-gray-400 tracking-widest uppercase mb-4">Ponete en contacto</p>
-                <a href="https://wa.me/541159712158" target="_blank" rel="noopener noreferrer" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">WhatsApp</a>
-                <a href="mailto:talleresmaltese@gmail.com" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">Mail</a>
-                <a href="tel:+541159712158" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">Teléfono</a>
+            <div class="flex flex-col space-y-6 text-right w-full max-w-sm">
+                <p class="text-sm text-gray-400 tracking-widest uppercase mb-2">Ponete en contacto</p>
+                
+                <!-- Opción WhatsApp -->
+                <div>
+                    <button id="btn-toggle-wsp" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors focus:outline-none w-full text-right">WhatsApp</button>
+                    <div id="info-wsp" class="hidden mt-3 bg-[#161616] border border-zinc-800 p-4 rounded-lg text-left shadow-xl space-y-3">
+                        <p class="text-xs text-zinc-400 uppercase tracking-wider">Escribinos por WhatsApp</p>
+                        <p class="font-mono text-white text-sm">+54 11 5971-2158</p>
+                        <a href="https://wa.me/541159712158" target="_blank" rel="noopener noreferrer" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs tracking-widest uppercase py-2.5 rounded transition-colors font-medium">Enviar WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Opción Mail -->
+                <div>
+                    <button id="btn-toggle-mail" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors focus:outline-none w-full text-right">Mail</button>
+                    <div id="info-mail" class="hidden mt-3 bg-[#161616] border border-zinc-800 p-4 rounded-lg text-left shadow-xl space-y-3">
+                        <p class="text-xs text-zinc-400 uppercase tracking-wider">Correo electrónico</p>
+                        <p id="texto-mail" class="font-mono text-white text-xs break-all">talleresmaltese@gmail.com</p>
+                        <button id="btn-copiar-mail" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white text-center text-xs tracking-widest uppercase py-2.5 rounded transition-colors font-medium">Copiar Mail</button>
+                    </div>
+                </div>
+
+                <!-- Opción Teléfono -->
+                <div>
+                    <button id="btn-toggle-tel" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors focus:outline-none w-full text-right">Teléfono</button>
+                    <div id="info-tel" class="hidden mt-3 bg-[#161616] border border-zinc-800 p-4 rounded-lg text-left shadow-xl space-y-3">
+                        <p class="text-xs text-zinc-400 uppercase tracking-wider">Número de contacto</p>
+                        <p id="texto-tel" class="font-mono text-white text-sm">+54 11 5971-2158</p>
+                        <button id="btn-copiar-tel" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white text-center text-xs tracking-widest uppercase py-2.5 rounded transition-colors font-medium">Copiar Teléfono</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
