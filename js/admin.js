@@ -24,7 +24,23 @@ export async function subirFoto(file) {
   return urlData.publicUrl;
 }
 
-// 2. Buscar auto por patente
+// 2. NUEVA: Borrar imagen del bucket
+export async function borrarFoto(url) {
+  // Extraemos el nombre del archivo de la URL
+  const fileName = url.split('/').pop();
+  
+  const { error } = await supabase.storage
+    .from('maltese-fotos')
+    .remove([fileName]);
+
+  if (error) {
+    console.error('Error al borrar foto:', error.message);
+    return false;
+  }
+  return true;
+}
+
+// 3. Buscar auto por patente
 export async function buscarAuto(patente) {
   const { data, error } = await supabase
     .from('maltese_autos')
@@ -38,7 +54,7 @@ export async function buscarAuto(patente) {
   return data;
 }
 
-// 3. Crear un nuevo auto
+// 4. Crear un nuevo auto
 export async function crearAuto(autoData) {
   const { data, error } = await supabase
     .from('maltese_autos')
@@ -53,7 +69,7 @@ export async function crearAuto(autoData) {
   return data;
 }
 
-// 4. Crear un servicio (carga)
+// 5. Crear un servicio (carga)
 export async function crearServicio(servicioData) {
   const { data, error } = await supabase
     .from('maltese_servicios')
@@ -68,7 +84,7 @@ export async function crearServicio(servicioData) {
   return data;
 }
 
-// 5. Obtener todos los autos (para el panel del admin)
+// 6. Obtener todos los autos (para el panel del admin)
 export async function obtenerTodosLosAutos() {
   const { data, error } = await supabase
     .from('maltese_autos')
@@ -82,7 +98,7 @@ export async function obtenerTodosLosAutos() {
   return data;
 }
 
-// 6. Obtener servicios de un auto específico
+// 7. Obtener servicios de un auto específico
 export async function obtenerServiciosAuto(autoId) {
   const { data, error } = await supabase
     .from('maltese_servicios')
@@ -97,7 +113,7 @@ export async function obtenerServiciosAuto(autoId) {
   return data;
 }
 
-// 7. NUEVA: Actualizar datos de un auto
+// 8. Actualizar datos de un auto
 export async function actualizarAuto(autoId, datosNuevos) {
   const { data, error } = await supabase
     .from('maltese_autos')

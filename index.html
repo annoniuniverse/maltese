@@ -14,21 +14,19 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Forzamos a que la primera imagen de fondo se vea al instante */
         .slide:first-child {
             opacity: 1 !important;
         }
 
-        /* Animación fluida y lineal para el carrusel */
         #carrusel-track {
             transition: transform 1s linear; 
         }
     </style>
 </head>
-<body class="bg-black text-white overflow-x-hidden antialiased">
+<body class="bg-[#0a0a0a] text-white overflow-x-hidden antialiased">
 
     <!-- HEADER FIJO -->
-    <header class="fixed top-0 left-0 w-full z-40 p-6 flex justify-between items-center">
+    <header class="fixed top-0 left-0 w-full z-40 p-6 flex justify-between items-center bg-black/30 backdrop-blur-sm">
         <div class="cursor-pointer" onclick="window.scrollTo(0,0)">
             <img src="img/malteselogo.png" alt="Maltese Logo" class="h-10 md:h-12 w-auto object-contain">
         </div>
@@ -58,8 +56,8 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: TUS SERVICIOS -->
-    <section id="servicios" class="py-24 overflow-hidden">
+    <!-- SECCIÓN 2: TUS SERVICIOS (Fondo un poco más claro) -->
+    <section id="servicios" class="py-24 overflow-hidden bg-[#0f0f0f]">
         <div class="max-w-4xl mx-auto px-6 text-center mb-16">
             <h2 class="text-sm tracking-widest text-gray-400 uppercase mb-4">Tus Servicios</h2>
             <h3 class="text-2xl md:text-4xl font-light mb-6 leading-tight">Todo lo que tu auto necesita, en un solo lugar.</h3>
@@ -76,7 +74,6 @@
                 <img src="img/servicio3.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 3">
                 <img src="img/servicio4.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 4">
                 <img src="img/servicio5.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 5">
-                <!-- NUEVA FOTO ACÁ -->
                 <img src="img/servicio7.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 7">
                 <img src="img/servicio6.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 6">
                 
@@ -86,7 +83,6 @@
                 <img src="img/servicio3.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 3">
                 <img src="img/servicio4.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 4">
                 <img src="img/servicio5.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 5">
-                <!-- NUEVA FOTO ACÁ DUPLICADA -->
                 <img src="img/servicio7.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 7">
                 <img src="img/servicio6.png" class="carrusel-item h-[200px] md:h-[320px] w-auto object-cover flex-shrink-0" alt="Servicio 6">
             </div>
@@ -94,7 +90,7 @@
     </section>
 
     <!-- SECCIÓN 3: NUESTRA HISTORIA -->
-    <section id="historia" class="relative py-32 bg-zinc-900">
+    <section id="historia" class="relative py-32 bg-[#0d0d0d]">
         <div class="absolute inset-0 opacity-20">
             <img src="img/nuestrahistoria.png" alt="Fondo historia" class="w-full h-full object-cover">
         </div>
@@ -115,14 +111,14 @@
     </section>
 
     <!-- SECCIÓN 4: FOOTER / CONTACTO -->
-    <footer id="contacto-pie" class="py-20 border-t border-zinc-800 text-center">
+    <footer id="contacto-pie" class="py-20 border-t border-zinc-800 bg-[#111111] text-center">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-2xl font-light mb-8 uppercase tracking-widest">Visitanos</h2>
             <div class="flex flex-col md:flex-row justify-center gap-12 text-gray-400 font-light">
                 <div>
                     <h4 class="text-white mb-2">Dirección</h4>
-                    <p>Ayacucho 3745</p>
-                    <p>Vte. López, Bs. As.</p>
+                    <p>Aracucho 3745</p>
+                    <p>Vicente Lopez, Bs. As.</p>
                 </div>
                 <div>
                     <h4 class="text-white mb-2">Horarios</h4>
@@ -161,9 +157,9 @@
             <button id="btn-cerrar-contacto" class="absolute top-6 right-8 text-4xl font-light text-white hover:text-gray-400">&times;</button>
             <div class="flex flex-col space-y-6 text-right">
                 <p class="text-sm text-gray-400 tracking-widest uppercase mb-4">Ponete en contacto</p>
-                <a href="#" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">WhatsApp</a>
-                <a href="#" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">Mail</a>
-                <a href="#" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">Teléfono</a>
+                <a href="https://wa.me/541159712158" target="_blank" rel="noopener noreferrer" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">WhatsApp</a>
+                <a href="mailto:talleresmaltese@gmail.com" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">Mail</a>
+                <a href="tel:+541159712158" class="text-2xl md:text-4xl font-light hover:text-gray-400 transition-colors">Teléfono</a>
             </div>
         </div>
     </div>

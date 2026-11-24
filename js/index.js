@@ -19,10 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('carrusel-track');
     const items = document.querySelectorAll('.carrusel-item');
     let scrollAmount = 0;
-    let speed = 0.5; // Velocidad del desplazamiento (0.5 = lento y elegante, 1 = más rápido)
+    let speed = 0.5;
     let isPaused = false;
 
-    // Pausar el movimiento si el usuario pone el mouse encima (opcional, pero queda bien)
     if (track) {
         track.addEventListener('mouseenter', () => isPaused = true);
         track.addEventListener('mouseleave', () => isPaused = false);
@@ -34,13 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isPaused) {
             scrollAmount += speed;
             
-            // Calculamos el ancho total de la primera mitad de las fotos (las originales)
             let mitadDelTrack = 0;
             for (let i = 0; i < items.length / 2; i++) {
-                mitadDelTrack += items[i].offsetWidth + 24; // 24px es el gap
+                mitadDelTrack += items[i].offsetWidth + 24;
             }
 
-            // Si llegamos a la mitad, reiniciamos a 0 de golpe (como son iguales, el ojo no lo nota)
             if (scrollAmount >= mitadDelTrack) {
                 scrollAmount = 0;
             }
@@ -50,13 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animarCarrusel);
     }
     
-    // Iniciar animación
     requestAnimationFrame(animarCarrusel);
 
     // --- 3. MENÚ IZQUIERDO ---
     const btnMenu = document.getElementById('btn-menu');
     const menuOverlay = document.getElementById('menu-overlay');
     const btnCerrarMenu = document.getElementById('btn-cerrar-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Función para cerrar el menú
+    const cerrarMenu = () => {
+        menuOverlay.classList.remove('opacity-100');
+        menuOverlay.classList.add('opacity-0');
+        setTimeout(() => {
+            menuOverlay.classList.add('hidden');
+        }, 300);
+    };
 
     if (btnMenu) {
         btnMenu.addEventListener('click', () => {
@@ -69,14 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (btnCerrarMenu) {
-        btnCerrarMenu.addEventListener('click', () => {
-            menuOverlay.classList.remove('opacity-100');
-            menuOverlay.classList.add('opacity-0');
-            setTimeout(() => {
-                menuOverlay.classList.add('hidden');
-            }, 300);
-        });
+        btnCerrarMenu.addEventListener('click', cerrarMenu);
     }
+
+    // NUEVO: Cerrar el menú al hacer clic en cualquier opción
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            cerrarMenu();
+        });
+    });
 
     // --- 4. MENÚ DERECHO (CONTACTO) ---
     const btnContacto = document.getElementById('btn-contacto');
