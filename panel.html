@@ -118,7 +118,37 @@
 
         <!-- VISTA CLIENTE -->
         <div id="vista-cliente" class="hidden">
-            <h1 class="text-3xl font-light text-white mb-10 tracking-wide">Mi Vehículo</h1>
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+                <h1 class="text-3xl font-light text-white tracking-wide flex-shrink-0">Mi Vehículo</h1>
+
+                <!-- CARRUSEL DE 7 SLOTS (FADE INDEPENDIENTE, FOTO FIJA POR SLOT) -->
+                <div id="carrusel-cliente" class="w-full md:w-[460px] lg:w-[560px]">
+                    <div class="grid grid-cols-7 gap-2">
+                        <div class="slot-foto relative aspect-[4/3] overflow-hidden rounded bg-[#161616] border border-zinc-800">
+                            <img data-slot="0" src="" alt="Foto taller" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+                        </div>
+                        <div class="slot-foto relative aspect-[4/3] overflow-hidden rounded bg-[#161616] border border-zinc-800">
+                            <img data-slot="1" src="" alt="Foto taller" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+                        </div>
+                        <div class="slot-foto relative aspect-[4/3] overflow-hidden rounded bg-[#161616] border border-zinc-800">
+                            <img data-slot="2" src="" alt="Foto taller" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+                        </div>
+                        <div class="slot-foto relative aspect-[4/3] overflow-hidden rounded bg-[#161616] border border-zinc-800">
+                            <img data-slot="3" src="" alt="Foto taller" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+                        </div>
+                        <div class="slot-foto relative aspect-[4/3] overflow-hidden rounded bg-[#161616] border border-zinc-800">
+                            <img data-slot="4" src="" alt="Foto taller" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+                        </div>
+                        <div class="slot-foto relative aspect-[4/3] overflow-hidden rounded bg-[#161616] border border-zinc-800">
+                            <img data-slot="5" src="" alt="Foto taller" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+                        </div>
+                        <div class="slot-foto relative aspect-[4/3] overflow-hidden rounded bg-[#161616] border border-zinc-800">
+                            <img data-slot="6" src="" alt="Foto taller" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="lista-autos-cliente" class="space-y-6">
                 <!-- Se llena con JS -->
             </div>

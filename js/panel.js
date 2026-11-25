@@ -33,6 +33,17 @@ let serviciosEditando = [];
 let fotosZoomActuales = [];
 let indiceZoomActual = 0;
 
+// Fotos del carrusel de la vista cliente (una por slot, siempre fija)
+const FOTOS_CARRUSEL_CLIENTE = [
+    'img/servicio1.jpg',
+    'img/servicio2.png',
+    'img/servicio3.png',
+    'img/servicio4.png',
+    'img/servicio5.png',
+    'img/servicio6.png',
+    'img/servicio7.png'
+];
+
 // 1. Inicialización
 async function init() {
     const user = await obtenerUsuario();
@@ -264,6 +275,8 @@ document.getElementById('btn-volver-lista').addEventListener('click', () => {
 
 // 4. Lógica CLIENTE
 async function cargarVistaCliente(email) {
+    iniciarCarruselCliente();
+
     const autos = await obtenerMisAutos();
     const lista = document.getElementById('lista-autos-cliente');
     lista.innerHTML = '';
@@ -350,6 +363,36 @@ async function cargarVistaCliente(email) {
             </div>
         `;
         lista.appendChild(div);
+    }
+}
+
+// 4.b Carrusel de fotos en la vista cliente (7 slots, cada uno con su foto fija que prende y apaga)
+function iniciarCarruselCliente() {
+    const slots = document.querySelectorAll('#carrusel-cliente img[data-slot]');
+    if (slots.length === 0 || FOTOS_CARRUSEL_CLIENTE.length === 0) return;
+
+    const totalSlots = Math.min(slots.length, FOTOS_CARRUSEL_CLIENTE.length);
+
+    for (let i = 0; i < totalSlots; i++) {
+        const img = slots[i];
+        const fotoFija = FOTOS_CARRUSEL_CLIENTE[i];
+
+        // Cada slot muestra SIEMPRE su misma foto
+        img.src = fotoFija;
+
+        // Transición de opacidad lenta (coincide con el CSS: duration-1000 → 1s por paso)
+        img.style.transition = 'opacity 2.5s ease-in-out';
+
+        // Intervalo largo y aleatorio para que no se sincronicen (árbol de navidad)
+        const intervalo = 9000 + Math.random() * 7000; // entre 9s y 16s
+        const duracionFade = 2500; // 2.5s para el fade out, igual para el fade in
+
+        setInterval(() => {
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.style.opacity = '1';
+            }, duracionFade);
+        }, intervalo);
     }
 }
 
